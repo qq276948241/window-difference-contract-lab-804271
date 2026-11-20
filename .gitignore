@@ -1,0 +1,15 @@
+*.log
+node_modules
+.DS_Store
+.nyc_output
+coverage
+tmp
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*token*
+*secret*
+*credentials*
+index.d.ts
