@@ -83,7 +83,7 @@ pixelmatch image1.png image2.png [diff.png] [threshold] [includeAA]
 ```
 
 It prints the number of different pixels and exits with code `0` if the images match, `66` if they
-differ, `65` if their dimensions don't match, and `64` on wrong usage.
+differ, `65` if their dimensions don't match, and `64` on wrong usage or an unreadable input file.
 
 ## Example usage
 

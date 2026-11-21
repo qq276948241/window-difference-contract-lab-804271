@@ -14,8 +14,21 @@ const options = {};
 if (threshold !== undefined) options.threshold = +threshold;
 if (includeAA !== undefined) options.includeAA = includeAA !== 'false';
 
-const img1 = PNG.sync.read(fs.readFileSync(img1Path));
-const img2 = PNG.sync.read(fs.readFileSync(img2Path));
+function readImage(filePath) {
+    let image;
+    try {
+        image = PNG.sync.read(fs.readFileSync(filePath));
+    } catch (err) {
+        // unreadable or invalid input files are a caller (usage) error, not an internal crash
+        console.log(`Cannot read image file "${filePath}": ${err.message.split('\n')[0]}`);
+        process.exit(64);
+        throw err; // unreachable: process.exit terminates; here to keep all paths returning
+    }
+    return image;
+}
+
+const img1 = readImage(img1Path);
+const img2 = readImage(img2Path);
 
 const {width, height} = img1;
 
